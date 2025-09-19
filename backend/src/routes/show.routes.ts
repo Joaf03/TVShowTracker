@@ -11,6 +11,6 @@ const showService = new ShowService(showRepository);
 const showController = new ShowController(showService);
 
 showRouter.get('/', (req, res) => showController.getShows(req, res));
-
+showRouter.get('/:id', (req, res) => showController.getShow(req, res));
 
 export default showRouter;

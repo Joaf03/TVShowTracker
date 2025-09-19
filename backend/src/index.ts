@@ -1,6 +1,6 @@
-import showRouter from "./routes/show.routes"
+import showRouter from "./routes/show.routes.js"
 import express from "express"
-import env_vars from "./config/env";
+import env_vars from "./config/env.js";
 
 const app = express();
 

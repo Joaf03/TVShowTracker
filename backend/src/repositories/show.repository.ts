@@ -19,5 +19,8 @@ export class ShowRepository {
         return result.rows;
     }
 
-    
+    async findById(id: number) : Promise<Show | null> {
+        const result = await this.pool.query("SELECT * FROM shows WHERE id = $1", [id]);
+        return result.rows[0] || null;
+    }
 }
