@@ -1,5 +1,5 @@
 import { Pool } from "pg"
-import env_vars from "../config/env"
+import env_vars from "../config/env.js"
 
 const pool = new Pool({
     database: env_vars.DB.DATABASE,

@@ -27,7 +27,7 @@ const env_vars = {
         DATABASE: process.env.POSTGRES_DB!,
         HOST: process.env.POSTGRES_HOST!,
         PORT: parseInt(process.env.POSTGRES_PORT!),
-        URL: process.env.POSTGRES_URL!,
+        URL: process.env.DATABASE_URL!,
     },
 } as const;
 
