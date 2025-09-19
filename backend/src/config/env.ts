@@ -29,6 +29,7 @@ const env_vars = {
         PORT: parseInt(process.env.POSTGRES_PORT!),
         URL: process.env.DATABASE_URL!,
     },
+    PORT: process.env.HTTP_SERVER_PORT
 } as const;
 
 export default env_vars;
