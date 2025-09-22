@@ -73,4 +73,23 @@ export class ShowController {
             });
         } 
     }
+
+    async getEpisodeInShow(req: Request, res: Response) : Promise<void> {
+        try {
+            const showId = parseInt(req.params.showId, 10);
+            const episodeId = parseInt(req.params.episodeId, 10);
+
+            const episode = await this.showService.getEpisodeInShow(showId, episodeId);
+            
+            res.json({
+                success: true,
+                data: episode,
+            });
+        } catch (error: any) { 
+            res.status(404).json({
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+            });
+        } 
+    }
 }

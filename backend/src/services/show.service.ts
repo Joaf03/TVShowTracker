@@ -44,4 +44,20 @@ export class ShowService {
 
         return episodes;
     }
+
+    async getEpisodeInShow(showId: number, episodeId: number) : Promise<Episode> {
+        const show = await this.showRepository.findById(showId);
+
+        if (!show) {
+            throw Error("Show not found");
+        }
+
+        const episode = await this.showRepository.findEpisodeByShowIdAndEpisodeId(showId, episodeId);
+ 
+        if (!episode) {
+            throw Error("Episode not found");
+        }
+
+        return episode;
+    }
 }
