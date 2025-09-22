@@ -22,4 +22,16 @@ export class ActorService {
         }
         return actor;
     }
+
+    async getShowsOfActor(id: number) : Promise<Actor[] | null> {
+        const actor = await this.actorRepository.findById(id);
+
+        if (!actor) {
+            throw Error("Actor not found");
+        }
+
+        const shows =  await this.actorRepository.findShowsByActorId(id);
+
+        return shows;
+    }
 }

@@ -37,4 +37,22 @@ export class ActorController {
             });
         }
     }
+
+    async getShowsOfActor(req: Request, res: Response) {
+        try {
+            const actorId = parseInt(req.params.actorId, 10);
+
+            const shows = await this.actorService.getShowsOfActor(actorId);
+
+           res.json({
+                success: true,
+                data: shows,
+            });
+        } catch (error: any) { 
+            res.status(404).json({
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+            });
+        } 
+    }
 }

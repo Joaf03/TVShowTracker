@@ -13,5 +13,6 @@ const actorController = new ActorController(actorService);
 
 actorRouter.get('/', (req, res) => actorController.getActors(req, res));
 actorRouter.get('/:actorId', validateId("actorId"), (req, res) => actorController.getActorById(req, res));
+actorRouter.get('/:actorId/shows', validateId("actorId"), (req, res) => actorController.getShowsOfActor(req, res));
 
 export default actorRouter;
