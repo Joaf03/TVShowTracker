@@ -1,4 +1,4 @@
-import { Show, Actor, ShowRepository } from "../repositories/show.repository.js"
+import { Show, Actor, Episode, ShowRepository } from "../repositories/show.repository.js"
 
 export class ShowService {
     constructor(private showRepository : ShowRepository) {}
@@ -31,5 +31,17 @@ export class ShowService {
         const actors = await this.showRepository.findActorsByShowId(id);
 
         return actors;
+    }
+
+    async getEpisodesInShow(id: number) : Promise<Episode[] | null> {
+        const show = await this.showRepository.findById(id);
+
+        if (!show) {
+            throw Error("Show not found");
+        }
+
+        const episodes = await this.showRepository.findEpisodesByShowId(id);
+
+        return episodes;
     }
 }

@@ -20,6 +20,18 @@ export interface Actor {
     updated_at: string
 }
 
+export interface Episode {
+    id: number,
+    show_id: number,
+    title: string,
+    season_number: number | null,
+    episode_number: number,
+    duration_minutes: number,
+    air_date: string,
+    created_at: string,
+    updated_at: string
+}
+
 export class ShowRepository {
     constructor(private pool : Pool) {}
 
@@ -37,6 +49,11 @@ export class ShowRepository {
         const result = await this.pool.query(
             "SELECT * FROM actors a JOIN show_actors sa ON a.id = sa.actor_id WHERE sa.show_id = $1", [id]
         );
+        return result.rows;
+    }
+
+    async findEpisodesByShowId(id: number) : Promise<Episode[] | null> {
+        const result = await this.pool.query("SELECT * FROM episodes WHERE show_id = $1", [id]);
         return result.rows;
     }
 }

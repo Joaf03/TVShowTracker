@@ -14,5 +14,6 @@ const showController = new ShowController(showService);
 showRouter.get('/', (req, res) => showController.getShows(req, res));
 showRouter.get('/:showId', validateShowId, (req, res) => showController.getShowById(req, res));
 showRouter.get('/:showId/actors', validateShowId, (req, res) => showController.getActorsInShow(req, res))
+showRouter.get('/:showId/episodes', validateShowId, (req, res) => showController.getEpisodesInShow(req, res))
 
 export default showRouter;
