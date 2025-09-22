@@ -12,7 +12,7 @@ export class ShowService {
         return shows;
     }
 
-    async getShow(id: number) : Promise<Show> {
+    async getShowById(id: number) : Promise<Show> {
         const show = await this.showRepository.findById(id);
 
         if (!show) {

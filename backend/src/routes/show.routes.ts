@@ -3,6 +3,7 @@ import { ShowController } from "../controllers/show.controller.js";
 import { ShowService } from "../services/show.service.js";
 import { ShowRepository } from "../repositories/show.repository.js";
 import pool from "../database/connection.js"
+import validateShowId from "../middleware/validateShowId.middleware.js";
 
 const showRouter = Router();
 
@@ -11,6 +12,6 @@ const showService = new ShowService(showRepository);
 const showController = new ShowController(showService);
 
 showRouter.get('/', (req, res) => showController.getShows(req, res));
-showRouter.get('/:id', (req, res) => showController.getShow(req, res));
+showRouter.get('/:showId', validateShowId, (req, res) => showController.getShowById(req, res));
 
 export default showRouter;

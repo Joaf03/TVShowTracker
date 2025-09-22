@@ -20,19 +20,11 @@ export class ShowController {
         }
     }
 
-    async getShow(req: Request, res: Response) : Promise<void> {
+    async getShowById(req: Request, res: Response) : Promise<void> {
         try {
-            const showId = parseInt(req.params.id, 10);
+            const showId = parseInt(req.params.showId, 10);
 
-            if (!Number.isInteger(showId) || showId <= 0) {
-                res.status(400).json({
-                    success: false,
-                    error: "Invalid show ID"
-                })
-                return;
-            }
- 
-            const show = await this.showService.getShow(showId);
+            const show = await this.showService.getShowById(showId);
 
             res.json({
                 success: true,
