@@ -37,4 +37,22 @@ export class ShowController {
             });
         }
     }
+
+    async getActorsInShow(req: Request, res: Response) : Promise<void> {
+        try {
+            const showId = parseInt(req.params.showId, 10);
+
+            const actors = await this.showService.getActorsInShow(showId);
+
+            res.json({
+                success: true,
+                data: actors,
+            });
+        } catch (error: any) { 
+            res.status(404).json({
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+            });
+        } 
+    }
 }

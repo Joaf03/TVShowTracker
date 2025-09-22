@@ -11,6 +11,15 @@ export interface Show {
     updated_at: string
 }
 
+export interface Actor {
+    id: number,
+    name: string,
+    date_of_birth: string,
+    nationality: string,
+    created_at: string,
+    updated_at: string
+}
+
 export class ShowRepository {
     constructor(private pool : Pool) {}
 
@@ -22,5 +31,12 @@ export class ShowRepository {
     async findById(id: number) : Promise<Show | null> {
         const result = await this.pool.query("SELECT * FROM shows WHERE id = $1", [id]);
         return result.rows[0] || null;
+    }
+
+    async findActorsByShowId(id: number) : Promise<Actor[] | null> {
+        const result = await this.pool.query(
+            "SELECT * FROM actors a JOIN show_actors sa ON a.id = sa.actor_id WHERE sa.show_id = $1", [id]
+        );
+        return result.rows;
     }
 }
