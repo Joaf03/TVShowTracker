@@ -1,4 +1,5 @@
-import { Show, Actor, Episode, ShowRepository } from "../repositories/show.repository.js"
+import { Show, Actor, Episode } from "../types.js"
+import { ShowRepository } from "../repositories/show.repository.js";
 
 export class ShowService {
     constructor(private showRepository : ShowRepository) {}

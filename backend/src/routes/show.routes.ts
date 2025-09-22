@@ -3,7 +3,7 @@ import { ShowController } from "../controllers/show.controller.js";
 import { ShowService } from "../services/show.service.js";
 import { ShowRepository } from "../repositories/show.repository.js";
 import pool from "../database/connection.js"
-import validateId from "../middleware/validateShowId.middleware.js";
+import validateId from "../middleware/validateId.middleware.js";
 
 const showRouter = Router();
 
