@@ -19,4 +19,22 @@ export class ActorController {
             });
         }
     }
+
+    async getActorById(req: Request, res: Response) : Promise<void> {
+        try {
+            const actorId = parseInt(req.params.actorId, 10);
+
+            const actor = await this.actorService.getActorById(actorId);
+
+            res.json({
+                success: true,
+                data: actor,
+            });
+        } catch (error: any) { 
+            res.status(404).json({
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+            });
+        }
+    }
 }
