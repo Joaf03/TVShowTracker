@@ -11,5 +11,6 @@ const authService = new AuthService(userRepository);
 const authController = new AuthController(authService);
 
 authRouter.post('/sign-up', (req, res) => authController.signUp(req, res));
+authRouter.post('/login', (req, res) => authController.logIn(req, res));
 
 export default authRouter;

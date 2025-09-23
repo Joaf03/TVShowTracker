@@ -10,4 +10,9 @@ export class UserRepository {
             , [email, hashedPassword]);
         return result.rows[0];
     }
+
+    async findByEmail(email: string) : Promise<User | null>{
+        const result = await this.pool.query("SELECT * from users WHERE email = $1", [email]);
+        return result.rows[0] || null;
+    }
 }

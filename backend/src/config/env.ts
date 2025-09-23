@@ -11,7 +11,8 @@ const required_env_vars = [
     "POSTGRES_PORT",
     "DATABASE_URL",
     "PGADMIN_DEFAULT_EMAIL",
-    "PGADMIN_DEFAULT_PASSWORD"
+    "PGADMIN_DEFAULT_PASSWORD",
+    "JWT_SECRET_KEY"
 ] as const;
 
 for (const env_var of required_env_vars) {
@@ -29,7 +30,8 @@ const env_vars = {
         PORT: parseInt(process.env.POSTGRES_PORT!),
         URL: process.env.DATABASE_URL!,
     },
-    PORT: process.env.HTTP_SERVER_PORT
+    PORT: process.env.HTTP_SERVER_PORT!,
+    JWT_SECRET: process.env.JWT_SECRET_KEY!
 } as const;
 
 export default env_vars;

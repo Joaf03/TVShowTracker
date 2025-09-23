@@ -6,7 +6,6 @@ export class AuthController {
 
     async signUp(req: Request, res: Response) : Promise<void> {
         try {
-            console.log(req.body)
             const { email, password } = req.body;
 
             if (!email || !password) {
@@ -26,6 +25,33 @@ export class AuthController {
                     email: user?.email,
                     created_at: user?.created_at
                 }
+            });
+
+        } catch(error) {
+            res.status(500).json({
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+            });
+        }
+    }
+
+    async logIn(req: Request, res: Response) {
+        try {
+            const { email, password } = req.body;
+
+            const token = await this.authService.logIn(email, password);
+
+            if(!token) {
+                res.status(500).json({
+                    success: false,
+                    error: "Failed to generate JWT token"
+                });
+                return;
+            }
+
+            res.status(200).json({
+                success: true,
+                data: token
             });
 
         } catch(error) {
