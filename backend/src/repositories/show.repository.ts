@@ -4,8 +4,18 @@ import { Show, Episode, Actor } from '../types.js'
 export class ShowRepository {
     constructor(private pool : Pool) {}
 
-    async findAll() : Promise<Show[]>{
-        const result = await this.pool.query("SELECT * FROM shows");
+    async findAll(genre?: string) : Promise<Show[]>{
+        let query = "SELECT * FROM shows";
+        const params = [];
+
+        if (genre) {
+            query += " WHERE genre = $1";
+            params.push(genre);
+        }
+
+        query += " ORDER BY title";
+
+        const result = await this.pool.query(query, params);
         return result.rows;
     }
 

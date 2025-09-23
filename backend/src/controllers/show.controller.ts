@@ -6,7 +6,10 @@ export class ShowController {
 
     async getShows(req: Request, res: Response) : Promise<void> {
         try {
-            const shows = await this.showService.getShows();
+            const genre = req.query.genre as string;
+            const shows = genre ?
+                await this.showService.getShows(genre) :
+                await this.showService.getShows();
             res.json({
                 success: true,
                 data: shows,
