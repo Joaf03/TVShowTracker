@@ -1,5 +1,5 @@
-import { ActorRepository } from "../repositories/actor.repository";
-import { Actor } from "../types";
+import { ActorRepository } from "../repositories/actor.repository.js";
+import { Actor, Show } from "../types.js";
 
 export class ActorService {
     constructor(private actorRepository: ActorRepository) {}
@@ -7,7 +7,7 @@ export class ActorService {
     async getActors() : Promise<Actor[]> {
         const actors = await this.actorRepository.findAll();
 
-        if (!actors) {
+        if (!actors || actors.length === 0) {
             throw Error("No actors available");
         }
 
@@ -23,7 +23,7 @@ export class ActorService {
         return actor;
     }
 
-    async getShowsOfActor(id: number) : Promise<Actor[] | null> {
+    async getShowsOfActor(id: number) : Promise<Show[] | null> {
         const actor = await this.actorRepository.findById(id);
 
         if (!actor) {

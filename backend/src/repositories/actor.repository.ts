@@ -1,5 +1,5 @@
 import { Pool } from "pg"
-import { Actor } from "../types";
+import { Actor, Show } from "../types.js";
 
 export class ActorRepository {
     constructor(private pool: Pool) {}
@@ -14,7 +14,7 @@ export class ActorRepository {
         return result.rows[0] || null;
     }
 
-    async findShowsByActorId(id: number) : Promise<Actor[] | null> {
+    async findShowsByActorId(id: number) : Promise<Show[] | null> {
 
         const result = await this.pool.query(
             "SELECT * FROM shows s JOIN show_actors sa ON s.id = sa.show_id WHERE sa.actor_id = $1", [id]

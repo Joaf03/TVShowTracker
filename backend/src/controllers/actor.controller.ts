@@ -1,4 +1,4 @@
-import { ActorService } from "../services/actor.service";
+import { ActorService } from "../services/actor.service.js";
 import { Request, Response } from "express";
 
 export class ActorController {

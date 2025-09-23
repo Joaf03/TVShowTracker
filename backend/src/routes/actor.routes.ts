@@ -1,9 +1,9 @@
 import { Router } from "express";
-import pool from "../database/connection";
-import { ActorRepository } from "../repositories/actor.repository";
-import { ActorService } from "../services/actor.service";
-import { ActorController } from "../controllers/actor.controller";
-import validateId from "../middleware/validateId.middleware";
+import pool from "../database/connection.js";
+import { ActorRepository } from "../repositories/actor.repository.js";
+import { ActorService } from "../services/actor.service.js";
+import { ActorController } from "../controllers/actor.controller.js";
+import validateId from "../middleware/validateId.middleware.js";
 
 const actorRouter = Router();
 
